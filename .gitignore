@@ -64,9 +64,12 @@ Thumbs.db
 logs
 *.log
 
-# Build outputs
-build/
-dist/
+# Python Build outputs (exclude Python builds but allow React builds)
+Backend/build/
+Backend/dist/
+
+# React build folder - INCLUDED for deployment
+# Frontend/build/  # Uncomment this line if you don't want to include React build
 
 # API Keys and sensitive data
 config.json
