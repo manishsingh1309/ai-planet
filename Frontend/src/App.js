@@ -3,7 +3,6 @@ import { Toaster } from 'react-hot-toast';
 import WorkflowBuilder from './modules/WorkflowCanvas/WorkflowBuilder';
 import ComponentLibrary from './modules/ComponentLibrary/ComponentLibrary';
 import ConfigurationPanel from './modules/ConfigurationPanel/ConfigurationPanel';
-import ExecutionControlPanel from './modules/ExecutionControlPanel/ExecutionControlPanel';
 import ChatInterface from './modules/ChatInterface/ChatInterface';
 import { useWorkflowStore } from './shared/stores';
 import './App.css';
@@ -28,16 +27,6 @@ function App() {
 
   const handleConfigUpdate = (nodeId, config) => {
     updateNodeData(nodeId, config);
-  };
-
-  const handleWorkflowExecute = (workflowData) => {
-    // This will be handled by the ChatInterface
-    console.log('Executing workflow:', workflowData);
-  };
-
-  const handleWorkflowReset = () => {
-    // Reset any execution state
-    console.log('Resetting workflow');
   };
 
   const handleComponentAdd = (component) => {
