@@ -1,0 +1,402 @@
+/* Custom Node Styles */
+.custom-node {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  min-width: 200px;
+  max-width: 280px;
+  box-shadow: var(--shadow-md);
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.custom-node:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.custom-node.selected {
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px var(--primary-100);
+}
+
+/* Node Header */
+.node-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.node-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.node-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.node-status {
+  display: flex;
+  align-items: center;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gray-400);
+}
+
+.status-dot.idle {
+  background: var(--gray-400);
+}
+
+.status-dot.configured {
+  background: var(--blue-500);
+}
+
+.status-dot.ready {
+  background: var(--green-500);
+}
+
+.status-dot.executing {
+  background: var(--yellow-500);
+  animation: pulse 1s infinite;
+}
+
+.status-dot.completed {
+  background: var(--green-600);
+}
+
+.status-dot.error {
+  background: var(--red-500);
+}
+
+/* Node Content */
+.node-content {
+  padding: 1rem;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.node-placeholder {
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.node-placeholder p {
+  margin: 0;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+/* Query Node Specific */
+.query-preview p {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* Knowledge Base Node Specific */
+.source-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.source-type {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.source-icon {
+  font-size: 1rem;
+}
+
+.source-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.document-count {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  align-self: flex-start;
+}
+
+.url-preview {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  background: var(--bg-surface);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+/* LLM Engine Node Specific */
+.model-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.model-name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.model-icon {
+  font-size: 1rem;
+}
+
+.model-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.model-params {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.param {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  padding: 0.2rem 0.4rem;
+  border-radius: var(--radius-sm);
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+}
+
+/* Output Node Specific */
+.output-config {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.format-info,
+.destination-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.format-icon,
+.dest-icon {
+  font-size: 1rem;
+}
+
+.format-label,
+.dest-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Node Footer */
+.node-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-light);
+  gap: 0.5rem;
+}
+
+.node-type {
+  font-size: 0.625rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.priority-badge,
+.feature-badge,
+.config-info {
+  font-size: 0.625rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.priority-badge.low {
+  background: var(--gray-100);
+  color: var(--gray-600);
+}
+
+.priority-badge.medium {
+  background: var(--blue-100);
+  color: var(--blue-600);
+}
+
+.priority-badge.high {
+  background: var(--red-100);
+  color: var(--red-600);
+}
+
+.feature-badge {
+  background: var(--primary-100);
+  color: var(--primary-600);
+}
+
+.config-info {
+  background: var(--gray-100);
+  color: var(--gray-600);
+}
+
+/* React Flow Handles */
+.handle {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--bg-secondary);
+  background: var(--text-primary);
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.handle.input-handle {
+  background: var(--green-500);
+}
+
+.handle.output-handle {
+  background: var(--blue-500);
+}
+
+.handle:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Specific Node Color Variants */
+.user-query-node {
+  border-color: var(--blue-200);
+}
+
+.user-query-node.selected {
+  border-color: var(--blue-500);
+  box-shadow: 0 0 0 3px var(--blue-100);
+}
+
+.knowledge-base-node {
+  border-color: var(--green-200);
+}
+
+.knowledge-base-node.selected {
+  border-color: var(--green-500);
+  box-shadow: 0 0 0 3px var(--green-100);
+}
+
+.llm-engine-node {
+  border-color: var(--purple-200);
+}
+
+.llm-engine-node.selected {
+  border-color: var(--purple-500);
+  box-shadow: 0 0 0 3px var(--purple-100);
+}
+
+.output-node {
+  border-color: var(--yellow-200);
+}
+
+.output-node.selected {
+  border-color: var(--yellow-500);
+  box-shadow: 0 0 0 3px var(--yellow-100);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .custom-node {
+    min-width: 180px;
+    max-width: 220px;
+  }
+
+  .node-header {
+    padding: 0.5rem 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .node-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .node-title {
+    font-size: 0.8rem;
+  }
+
+  .node-content {
+    padding: 0.75rem;
+    min-height: 60px;
+  }
+
+  .node-footer {
+    padding: 0.4rem 0.75rem;
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .priority-badge.low {
+    background: rgba(156, 163, 175, 0.2);
+    color: var(--gray-300);
+  }
+
+  .priority-badge.medium {
+    background: rgba(59, 130, 246, 0.2);
+    color: var(--blue-300);
+  }
+
+  .priority-badge.high {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--red-300);
+  }
+
+  .feature-badge {
+    background: rgba(99, 102, 241, 0.2);
+    color: var(--primary-300);
+  }
+
+  .config-info {
+    background: rgba(156, 163, 175, 0.2);
+    color: var(--gray-300);
+  }
+}
