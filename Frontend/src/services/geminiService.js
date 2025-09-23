@@ -6,7 +6,13 @@ class GeminiService {
     // Try environment variable first, then fallback to hardcoded key
     const API_KEY = process.env.REACT_APP_GEMINI_API_KEY || "AIzaSyDGY3t8EqW03V1gdf1Lmi4MPcEleGzOIcQ";
     
+    console.log('🔑 Initializing Gemini with API key:', API_KEY ? `${API_KEY.substring(0, 10)}...` : 'undefined');
+    
     try {
+      if (!API_KEY) {
+        throw new Error('No Gemini API key found in environment variables or fallback');
+      }
+      
       this.genAI = new GoogleGenerativeAI(API_KEY);
       this.model = this.genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
       this.chatHistory = [];
