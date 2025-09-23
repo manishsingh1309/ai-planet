@@ -8,23 +8,29 @@ import './ChatInterface.css';
 const ChatInterface = () => {
   const [message, setMessage] = useState('');
   const [isWorkflowMode, setIsWorkflowMode] = useState(false);
+  const [error, setError] = useState(null);
   const messagesEndRef = useRef(null);
   
+  // Always call hooks at the top level
+  const chatStore = useChatStore();
+  const documentStore = useDocumentStore();
+  const workflowStore = useWorkflowStore();
+
   const { 
-    messages, 
-    isLoading, 
+    messages = [], 
+    isLoading = false, 
     addMessage, 
     sendMessage,
     clearChat
-  } = useChatStore();
+  } = chatStore || {};
   
   const { 
-    documents, 
+    documents = [], 
     uploadDocument, 
     removeDocument 
-  } = useDocumentStore();
+  } = documentStore || {};
   
-  const { nodes, edges } = useWorkflowStore();
+  const { nodes = [], edges = [] } = workflowStore || {};
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -37,18 +43,27 @@ const ChatInterface = () => {
   const handleSendMessage = async () => {
     if (!message.trim()) return;
 
-    // Check if we should use workflow execution
-    if (isWorkflowMode && nodes.length > 0) {
-      await handleWorkflowExecution(message);
-    } else {
-      const workflowContext = {
-        nodes: nodes.length,
-        edges: edges.length,
-        hasDocuments: documents.length > 0
-      };
-      await sendMessage(message, workflowContext);
+    try {
+      // Check if we should use workflow execution
+      if (isWorkflowMode && nodes.length > 0) {
+        await handleWorkflowExecution(message);
+      } else {
+        const workflowContext = {
+          nodes: nodes.length,
+          edges: edges.length,
+          hasDocuments: documents.length > 0
+        };
+        await sendMessage(message, workflowContext);
+      }
+      setMessage('');
+    } catch (error) {
+      console.error('❌ Error sending message:', error);
+      addMessage({
+        role: 'assistant',
+        content: `❌ Sorry, I encountered an error: ${error.message}. Please try again.`
+      });
+      setMessage('');
     }
-    setMessage('');
   };
 
   const handleWorkflowExecution = async (query) => {
@@ -89,6 +104,7 @@ const ChatInterface = () => {
   };
 
   const formatMessage = (content) => {
+    if (!content) return '';
     return content.split('\n').map((line, index) => (
       <React.Fragment key={index}>
         {line}
@@ -96,6 +112,18 @@ const ChatInterface = () => {
       </React.Fragment>
     ));
   };
+
+  // Safety check for missing functions
+  if (!sendMessage || !addMessage) {
+    return (
+      <div className="chat-interface">
+        <div className="chat-error">
+          <h3>⚠️ Chat service unavailable</h3>
+          <p>Please refresh the page to reconnect.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="chat-interface">
