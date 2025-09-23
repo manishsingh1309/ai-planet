@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, FileText, Brain, Monitor, ChevronDown, ChevronRight, Plus } from 'lucide-react';
-import { useWorkflowStore } from '../../shared/stores';
 import './ComponentLibrary.css';
 
 // Core Components as per assignment requirements

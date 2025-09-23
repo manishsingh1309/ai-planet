@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Upload, MessageSquare, Loader, X } from 'lucide-react';
 import { toast } from 'react-hot-toast';
-import { useChatStore, useWorkflowStore } from '../../shared/stores';
+import { useChatStore } from '../../shared/stores/chatStore';
+import { useWorkflowStore } from '../../shared/stores';
 import './ChatInterface.css';
 
 const ChatInterface = () => {
